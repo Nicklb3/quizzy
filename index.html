@@ -4,9 +4,54 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./develop/styles.css">
     <title>QUIZZY</title>
 </head>
+
 <body>
-    
+    <div class="timer-count" value="0"></div>
+
+    <div class="card">
+
+        <!-- questions -->
+        <div id="question-cards" class="hide">
+            <div id="question"></div>
+            <div id="answer-buttons" class="button-grid">
+            </div>
+            <p id="correct"></p>
+        </div>
+
+        <!-- start page -->
+        <div class="quiz-start">
+            <button id="start-button" class="start-button button">Start Quiz</button>
+        </div>
+
+        <!-- finish quiz -->
+        <div id="initials-form" class="hide">
+            <h2>All done!</h2>
+            <h2>Points: <span class="points">0 </span> </h2>
+            <form action="" method="post">
+            <ul>
+                <li>
+                    <label for="initials">Initials:</label>
+                    <input type="text" id="initials" name="user_initials"/>
+                </li>
+                <li>
+                    <button type="submit" class="form-button button">Submit</button>
+                </li>
+            </ul>
+            </form>
+        </div>
+
+        <!-- score page -->
+        <div id="scoreboard" class="hide">
+            <h3>Highscores: </h3>
+            <ol class="highscore"></ol>
+            <button id="playagain-btn" class="button">Play Again</button>
+        </div>
+
+
+    </div>
+    <script src="./develop/script.js"></script>
 </body>
 </html>
