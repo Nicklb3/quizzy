@@ -13,7 +13,7 @@ var initials = document.querySelector("#initials")
 var highscoreEl = document.querySelector(".highscore")
 var playAgainBtn = document.querySelector("#playagain-btn")
 
-// click function on start button
+// click event on start button
 startButton.addEventListener("click", startQuiz);
 
 var timer;
@@ -53,3 +53,98 @@ function startQuiz() {
     startTimer();
     takeQuiz();
 }
+
+function startTimer() {
+    timerElement.textContent = timerCount;
+    timer = setInterval(function () {
+      timerCount--;
+      timerElement.textContent = timerCount;
+      if (timerCount >= 0) {
+        if (quizOver && timerCount > 0) {
+          endQuiz();
+        }
+      }
+      if (timerCount === 0) {
+        endQuiz();
+      }
+    }, 1000);
+}
+
+function takeQuiz() {
+    var questionObject = questions[index];
+    questionElement.textContent = questionObject.question;
+    var optionsArray = questionObject.options;
+    document.querySelector("#answer-buttons").innerHTML = "";
+    for (var i = 0; i < optionsArray.length; i++) {
+      var btn = document.createElement("button");
+      btn.addEventListener("click", checkAnswer);
+      btn.classList.add("button");
+      if (i === questionObject.answer) {
+        btn.dataset.correct = true;
+      } else {
+        btn.dataset.incorrect = false;
+      }
+      btn.textContent = optionsArray[i];
+      document.querySelector("#answer-buttons").appendChild(btn);
+    }
+}
+  
+  
+function checkAnswer(event) {
+    if (event.target.dataset.correct === "true") {
+      document.querySelector("#correct").textContent = "Correct!";
+      pointCounter += 5;
+      console.log(pointCounter);
+    } else {
+      timerCount -= 10;
+      document.querySelector("#correct").textContent = "Incorrect!";
+    }
+   
+    index++;
+    if (index < questions.length) {
+      takeQuiz();
+    } else {
+      endQuiz();
+    }
+  }
+  
+  
+  function endQuiz() {
+    questionCard.classList.add("hide");
+    clearInterval(timer);
+    enterInitialsForm.classList.remove("hide");
+    setPoints()
+  }
+  
+  
+  function setPoints() {
+    points.textContent = pointCounter;
+    localStorage.setItem("pointCount", pointCounter);
+}
+  
+  
+function getPoints() {
+    var storedPoints = localStorage.getItem("pointCount");
+    var storedInitials = localStorage.getItem("initials")
+    var finalScore = storedInitials + ": " + storedPoints;
+    var scoreArr = JSON.parse(localStorage.getItem("scoreList")) || [];
+    scoreArr.push(finalScore);
+    localStorage.setItem("scoreList", JSON.stringify(scoreArr));
+    scoreArr.forEach(function(score){ 
+      console.log(scoreArr, score)
+      highscoreEl.textContent += score
+    })
+}
+  
+//   play again event function
+function playAgain(event) {
+    event.preventDefault();
+    enterInitialsForm.classList.add("hide");
+    scoreboardPlayAgain.classList.remove("hide");
+    localStorage.setItem("initials", initials.value);
+    getPoints() 
+}
+
+// click event on submit score button and play again button
+submitButton.addEventListener("click", playAgain);
+playAgainBtn.addEventListener("click", function(){location.reload()})
