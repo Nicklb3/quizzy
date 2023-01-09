@@ -1,0 +1,80 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    font-size: 62.5%;
+    font-family: 'Comfortaa', cursive;
+
+    /* variable colors/ color hex demon slayer muichiro tokito Color Palette */
+    --color-one: #31363e;
+    --color-two: #5a9786;
+    --color-three: #868492;
+    --color-four: #9dd0cc;
+    --color-five: #334349;
+    --color-five-h: #334349b2;
+    --color-white: #fff;
+}
+
+body {
+    padding: 0;
+    margin:0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-one);
+    color: var(--color-white);
+}
+
+.card {
+    width: 800px;
+    max-width: 80%;
+    height: 400px;
+    margin: 60px;
+    padding: 10px;
+    background-color: var(--color-two);
+    border-radius: 5px;
+    border-width: 1px;
+    box-shadow: var(--color-white) 0px 2px 8px 0px;
+}
+
+.hide {
+    display: none;
+}
+
+.button-grid {
+    display: grid;
+    gap: 10px;
+    margin: 20px 0px;
+}
+
+.button {
+    background-color: var(--color-five);
+    border: 1px solid var(--color-five);
+    border-radius: 5px;
+    padding: 5px, 10px;
+    color: var(--color-white);
+    outline: none;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: var(--color-five-h);
+    border: 1px solid var(--color-five-h);
+}
+
+.quiz-start {
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
+
+.start-button {
+    font-size: 40px;
+    font-weight: 400;
+    padding: 10px 20px;
+}
