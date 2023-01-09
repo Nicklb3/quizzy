@@ -1,3 +1,4 @@
+// variables
 var startButton = document.querySelector("#start-button");
 var questionCard = document.querySelector("#question-cards");
 var timerElement = document.querySelector(".timer-count");
@@ -12,4 +13,34 @@ var initials = document.querySelector("#initials")
 var highscoreEl = document.querySelector(".highscore")
 var playAgainBtn = document.querySelector("#playagain-btn")
 
+// click function on start button
 startButton.addEventListener("click", startQuiz);
+
+var timer;
+var timerCount;
+var quizOver;
+var index = 0;
+var pointCounter = 0;
+
+var questions = [
+  {
+    question: "The .addEventListener method is used to ___.",
+    options: ["call a function whenever the specified event is delivered to the target", "add music to the webpage", "remove an event listener from a target", "decode specific text encoding"],
+    answer: 0,
+  },
+  {
+    question: "What is a variable?",
+    options: ["a block of code designed to perform a specific task", "storage for a collection of multiple items", "a container for a value", "a method to remove an element from the beginning of an array"],
+    answer: 2,
+  },
+  {
+    question: "What function can you use to create a timer in javascript?",
+    options: [".createInterval()", ".startTimer()", ".setTimer()", ".setInterval()"],
+    answer: 3,
+  },
+  {
+    question: "What is the difference between .textContent and .innerHTML?",
+    options: [".innerHTML gets content from both HTML and CSS", "there's not much of a difference", ".textContent can only be used on Sundays", ".textContent only gets content from <p> elements, while .innerHTML gets content from all elements"],
+    answer: 1,
+  },
+];
