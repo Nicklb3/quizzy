@@ -44,3 +44,12 @@ var questions = [
     answer: 1,
   },
 ];
+
+function startQuiz() {
+    quizOver = false;
+    timerCount = 60;
+    startButton.classList.add("hide");
+    questionCard.classList.remove("hide");
+    startTimer();
+    takeQuiz();
+}
